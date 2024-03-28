@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Pendidikan</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">DATA Mahasiswa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="../mahasiswa">Daftar Mahasiswa</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.ejs">Pendidikan</a>
+                </li>
+                <li class="nav-item  ">
+                    <a class="nav-link" href="../keahlian">keahlian</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        <% if (messages.success) { %>
+        <div class="alert alert-info" role="alert">
+            <%= messages.success %>
+        </div>
+        <% } %>
+        <% if (messages.error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= messages.error %>
+        </div>
+        <% } %>
+
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Daftar pendidikan
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama Instansi</th>
+                                    <th scope="col">Jurusan</th>
+                                    <th scope="col">Tahun Masuk</th>
+                                    <th scope="col">Tahun Lulus</th>
+                                    <th scope="col">Nomor Ijazah</th>
+                                    <th scope="col">Nama_depan</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% data.forEach(function(pendidikan, index) { %>
+                                <tr>
+                                    <th scope="row"><%= index + 1 %></th>
+                                    <td><%= pendidikan.nama_instansi   %></td>
+                                    <td><%= pendidikan.jurusan    %></td>
+                                    <td><%= pendidikan.tahun_masuk   %></td>
+                                    <td><%= pendidikan.tahun_lulus    %></td>
+                                    <td><%= pendidikan.nomor_ijazah    %></td>
+                                    <td><%= pendidikan.mahasiswa_nama_depan    %></td>
+                                    <td>
+                                        <a href="/pendidikan/edit/<%= pendidikan.id_pendidikan %>"
+                                            class="btn btn-sm btn-warning">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a href="/pendidikan/delete/<%= pendidikan.id_pendidikan %>"
+                                            class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="container">
+                    <h2>Tambah Pendidikan</h2>
+                    <form action="/pendidikan/store" method="POST">
+                        <div class="mb-3">
+                            <label for="nama_instansi" class="form-label">Nama Instansi</label>
+                            <input type="text" class="form-control" name="nama_instansi" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jurusan" class="form-label">Jurusan</label>
+                            <input type="text" class="form-control" name="jurusan" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
+                            <input type="text" class="form-control" name="tahun_masuk" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tahun_lulus" class="form-label">Tahun Lulus</label>
+                            <input type="text" class="form-control" name="tahun_lulus" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nomor_ijazah" class="form-label">Nomor Ijazah</label>
+                            <input type="text" class="form-control" name="nomor_ijazah" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_mahasiswa" class="form-label">Mahasiswa</label>
+                            <select class="form-select" name="id_mahasiswa" required>
+                                <% mahasiswa.forEach(function(mahasiswa) { %>
+                                <option value="<%= mahasiswa.id_mahasiswa %>"><%= mahasiswa.nama_depan %>
+                                    <%= mahasiswa.nama_belakang %>
+                                </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Keahlian</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">DATA Mahasiswa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="../mahasiswa">Daftar Mahasiswa</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../pendidikan">Pendidikan</a>
+                </li>
+                <li class="nav-item active ">
+                    <a class="nav-link" href="index.ejs">keahlian</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <% if (messages.success) { %>
+        <div class="alert alert-info" role="alert">
+            <%= messages.success %>
+        </div>
+        <% } %>
+        <% if (messages.error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= messages.error %>
+        </div>
+        <% } %>
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Daftar keahlian
+                    </div>
+                    <div class="card-body">
+               
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama Keahlian</th>
+                            <th scope="col">Tingkat Keahlian</th>
+                            <th scope="col">Mahasiswa</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% data.forEach(function(keahlian, index) { %>
+                        <tr>
+                            <th scope="row"><%= index + 1 %></th>
+                            <td><%= keahlian.nama_keahlian  %></td>
+                            <td><%= keahlian.tingkat_keahlian  %></td>
+                            <td><%= keahlian.mahasiswa_nama_depan %></td>
+                            <td>
+                                <a href="/keahlian/edit/<%= keahlian.id_keahlian %>"
+                                    class="btn btn-sm btn-warning">Edit</a>
+                            </td>
+                            <td>
+                                <a href="/keahlian/delete/<%= keahlian.id_keahlian %>"
+                                    class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <form action="/keahlian/store" method="POST">
+                <div class="mb-3">
+                    <label for="nama_keahlian" class="form-label">Nama Keahlian</label>
+                    <input type="text" class="form-control" name="nama_keahlian" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tingkat_keahlian" class="form-label">Tingkat Keahlian</label>
+                    <select class="form-select" name="tingkat_keahlian" required>
+                        <option value="1">Tingkat 1</option>
+                        <option value="2">Tingkat 2</option>
+                        <option value="3">Tingkat 3</option>
+                        <option value="4">Tingkat 4</option>
+                        <option value="5">Tingkat 5</option>
+                    </select>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="id_mahasiswa" class="form-label">Mahasiswa</label>
+                    <select class="form-select" name="id_mahasiswa" required>
+                        <% mahasiswa.forEach(function(mahasiswa) { %>
+                        <option value="<%= mahasiswa.id_mahasiswa %>"><%= mahasiswa.nama_depan %>
+                            <%= mahasiswa.nama_belakang %>
+                        </option>
+                        <% }) %>
+                    </select>
+                </div>
+    
+    
+    
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

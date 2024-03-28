@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Mahasiswa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1>Edit Mahasiswa</h1>
+                <form action="/mahasiswa/update/<%= id %>" method="POST">
+                    <div class="form-group">
+                        <label for="nrp">NRP</label>
+                        <input type="text" class="form-control" name="nrp" value="<%= nrp %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_depan">Nama Depan</label>
+                        <input type="text" class="form-control" name="nama_depan" value="<%= nama_depan %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_belakang">Nama Belakang</label>
+                        <input type="text" class="form-control" name="nama_belakang" value="<%= nama_belakang %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select class="form-control" name="jenis_kelamin" required>
+                            <option value="laki-laki" <%= jenis_kelamin === 'laki-laki' ? 'selected' : '' %>>Laki-laki</option>
+                            <option value="perempuan" <%= jenis_kelamin === 'perempuan' ? 'selected' : '' %>>Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="agama">Agama</label>
+                        <select class="form-control" name="agama" required>
+                            <option value="Islam" <%= agama === 'Islam' ? 'selected' : '' %>>Islam</option>
+                            <option value="Kristen" <%= agama === 'Kristen' ? 'selected' : '' %>>Kristen</option>
+                            <option value="Hindu" <%= agama === 'Hindu' ? 'selected' : '' %>>Hindu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="umur">Umur</label>
+                        <input type="number" class="form-control" name="umur" value="<%= umur %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tinggi_badan">Tinggi Badan</label>
+                        <input type="text" class="form-control" name="tinggi_badan" value="<%= tinggi_badan %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gol_darah">Golongan Darah</label>
+                        <input type="text" class="form-control" name="gol_darah" value="<%= gol_darah %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" name="alamat" value="<%= alamat %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hobi">Hobi</label>
+                        <input type="text" class="form-control" name="hobi" value="<%= hobi %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" value="<%= email %>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_telpon">No Telepon</label>
+                        <input type="tel" class="form-control" name="no_telpon" value="<%= no_telpon %>" required>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5

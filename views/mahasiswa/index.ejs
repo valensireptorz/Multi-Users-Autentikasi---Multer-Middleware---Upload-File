@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Mahasiswa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">DATA Mahasiswa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.ejs">Daftar Mahasiswa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../pendidikan">Pendidikan</a>
+                </li>
+                <li class="nav-item  ">
+                    <a class="nav-link" href="../keahlian">keahlian</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-lg">
+         <!-- Mengubah kelas container menjadi container-lg -->
+        <% if (messages.success) { %>
+            <div class="alert alert-info" role="alert">
+                <%= messages.success %>
+            </div>
+        <% } %>
+        <div class="row">
+            <div class="col"><br><br>
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Daftar Mahasiswa
+                    </div>
+                    <div class="card-body">
+                      
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">NRP</th>
+                                        <th scope="col">Nama Depan</th>
+                                        <th scope="col">Nama Belakang</th>
+                                        <th scope="col">Jenis Kelamin</th>
+                                        <th scope="col">Agama</th>
+                                        <th scope="col">Umur</th>
+                                        <th scope="col">Tinggi Badan</th>
+                                        <th scope="col">Golongan Darah</th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">Hobi</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">No Telepon</th>
+                                        <th scope="col">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i = 0; i < data.length; i++) { %>
+                                        <tr>
+                                            <th scope="row"><%= i + 1 %></th>
+                                            <td><%= data[i].nrp %></td>
+                                            <td><%= data[i].nama_depan %></td>
+                                            <td><%= data[i].nama_belakang %></td>
+                                            <td><%= data[i].jenis_kelamin %></td>
+                                            <td><%= data[i].agama %></td>
+                                            <td><%= data[i].umur %></td>
+                                            <td><%= data[i].tinggi_badan %></td>
+                                            <td><%= data[i].gol_darah %></td>
+                                            <td><%= data[i].alamat %></td>
+                                            <td><%= data[i].hobi %></td>
+                                            <td><%= data[i].email %></td>
+                                            <td><%= data[i].no_telpon %></td>
+                                            <td>
+                                                <a href="/mahasiswa/edit/<%= data[i].id_mahasiswa %>" class="btn btn-sm btn-warning mr-2">Edit</a>
+                                                <a href="/mahasiswa/delete/<%= data[i].id_mahasiswa %>" class="btn btn-sm btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <form action="/mahasiswa/store" method="POST">
+                            <div class="form-group">
+                                <label for="nrp">NRP</label>
+                                <input type="text" class="form-control" name="nrp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_depan">Nama Depan</label>
+                                <input type="text" class="form-control" name="nama_depan" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nama_belakang">Nama Belakang</label>
+                                <input type="text" class="form-control" name="nama_belakang" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="jenis_kelamin">Jenis Kelamin</label>
+                                <select class="form-control" name="jenis_kelamin" required>
+                                    <option value="laki-laki">Laki-laki</option>
+                                    <option value="perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="agama">Agama</label>
+                                <select class="form-control" name="agama" required>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Kristen">Kristen</option>
+                                    <option value="Hindu">Hindu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="umur">Umur</label>
+                                <input type="number" class="form-control" name="umur" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="tinggi_badan">Tinggi Badan</label>
+                                <input type="text" class="form-control" name="tinggi_badan" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gol_darah">Golongan Darah</label>
+                                <input type="text" class="form-control" name="gol_darah" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" class="form-control" name="alamat" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hobi">Hobi</label>
+                                <input type="text" class="form-control" name="hobi" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="no_telpon">No Telepon</label>
+                                <input type="tel" class="form-control" name="no_telpon" required>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br><br><br><br><br>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

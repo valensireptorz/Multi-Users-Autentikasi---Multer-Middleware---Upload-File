@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar produk</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS styles can be added here */
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Message -->
+        <div class="row">
+            <div class="col">
+                <a href="/produk/create" class="btn btn-success">Tambah</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"></th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col" colspan="2">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                        <tr>
+                            <th scope="row"><%- (i+1) %></th>
+                            <td><img src="/images/upload/<%- data[i].foto_produk %>" height="109"></td>
+                            <td><%- data[i].nama_produk %></td>
+                            <td><%- data[i].harga_produk %></td>
+                            <td><%- data[i].nama_kategori %></td>
+                            <td><a href="/produk/edit/<%- data[i].id_produk %>" class="btn btn-sm btn-warning">Edit</a></td>
+                            <td><a href="/produk/delete/<%= data[i].id_produk %>" class="btn btn-sm btn-danger">Delete</a></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

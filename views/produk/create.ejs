@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Produk</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS styles can be added here */
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="/produk/store" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Foto produk</label>
+                        <input type="file" name="foto_produk" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama produk</label>
+                        <input type="text" name="nama_produk" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Harga produk</label>
+                        <input type="text" name="harga_produk" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Kategori</label>
+                        <select name="id_kategori" class="form-control">
+                            <% for(var i = 0; i < data.length; i++) { %>
+                                <option value="<%= data[i].id_kategori %>"><%= data[i].nama_kategori %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

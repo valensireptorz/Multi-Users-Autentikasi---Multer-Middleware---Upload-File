@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Kategori</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <% if (messages.success) { %>
+            <div class="alert alert-info" role="alert">
+                <%= messages.success %>
+            </div>
+        <% } %>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Daftar Kategori
+                    </div>
+                    <div class="card-body">
+                       
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama</th>
+                                    <th colspan="2" scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i = 0; i < data.length; i++) { %>
+                                    <tr>
+                                        <th scope="row"><%= i + 1 %></th>
+                                        <td><%= data[i].nama_kategori %></td>
+                                        <td>
+                                            <a href="/kategori/edit/<%= data[i].id_kategori %>" class="btn btn-sm btn-warning mr-2">Edit</a>
+                                            <a href="/kategori/delete/<%= data[i].id_kategori %>" class="btn btn-sm btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                        <form action="/kategori/store" method="POST">
+                            <div class="form-group">
+                                <label for="nama_kategori">Nama kategori</label>
+                                <input type="text" class="form-control" name="nama_kategori" required>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
